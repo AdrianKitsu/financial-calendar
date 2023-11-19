@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./PnLIndicator.module.css";
+import classes from "./css/PnLIndicator.module.css";
 
 const PnLIndicator = ({ netPnL }) => {
   const isProfit = netPnL >= 0;
