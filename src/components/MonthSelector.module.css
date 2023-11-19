@@ -1,0 +1,59 @@
+.monthSelectorContainer {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: baseline;
+  position: relative;
+  left: 50px;
+}
+
+.monthYearWrapper {
+  display: contents;
+}
+
+.currentMonth {
+  font-size: 70px;
+  letter-spacing: -3px;
+  font-weight: 700;
+}
+
+.currentYear {
+  letter-spacing: -2px;
+  margin-left: 15px;
+  font-size: 40px;
+}
+
+.arrowWrapper {
+  margin-left: 30px;
+}
+
+.leftArrow {
+  border: none;
+  background-color: transparent;
+  font-size: 50px;
+  color: #131516;
+  padding: 0;
+
+  :hover {
+    font-size: 53px;
+    text-shadow: #131516 1px 0 4px;
+  }
+}
+
+.rightArrow {
+  border: none;
+  background-color: transparent;
+  font-size: 50px;
+  color: #131516;
+  padding: 0;
+
+  :hover {
+    font-size: 53px;
+    text-shadow: #131516 1px 0 2px;
+  }
+}
+
+svg {
+  margin-bottom: -5px;
+}
