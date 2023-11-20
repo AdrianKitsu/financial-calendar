@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 import TradeForm from "./TradeForm";
 import SelectedCalendarDayPopup from "./SelectedCalendarDayPopup";
+import classes from "./css/Calendar.module.css";
 
-const Calendar = ({ currentMonth }) => {
+const Calendar = ({ currentMonth, tradeData, onUpdateTradeData }) => {
   const [selectedDate, setSelectedDate] = useState(null);
-  const [tradeData, setTradeData] = useState({}); // Format: { 'YYYY-MM-DD': { trades: [{ stock: '', profit: '' }], log: '' } }
 
   const handleDateClick = (date) => {
     setSelectedDate(date);
   };
 
   const saveTradeData = (date, data) => {
-    setTradeData({ ...tradeData, [date]: data });
+    const updatedTradeData = { ...tradeData, [date]: data };
     setSelectedDate(null); // Close the form after saving
+    onUpdateTradeData(updatedTradeData);
   };
 
   const getDaysInMonth = (year, month) => {
@@ -34,6 +35,7 @@ const Calendar = ({ currentMonth }) => {
 
       dates.push(
         <SelectedCalendarDayPopup
+          className={classes.individualDays}
           key={i}
           day={i}
           dateKey={dateKey}
@@ -46,8 +48,8 @@ const Calendar = ({ currentMonth }) => {
   };
 
   return (
-    <div>
-      <div style={{ display: "flex", flexWrap: "wrap" }}>{renderDates()}</div>
+    <div className={classes.daysContainer}>
+      <div className={classes.daysWrapper}>{renderDates()}</div>
       {selectedDate && (
         <TradeForm
           date={selectedDate}

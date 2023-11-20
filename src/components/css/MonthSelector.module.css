@@ -1,15 +1,15 @@
 .monthSelectorContainer {
+  display: contents;
+  width: 100vw;
+  margin-bottom: 50px;
+}
+
+.monthYearWrapper {
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
   justify-content: flex-start;
   align-items: baseline;
-  position: relative;
-  left: 50px;
-}
-
-.monthYearWrapper {
-  display: contents;
 }
 
 .currentMonth {
@@ -25,7 +25,9 @@
 }
 
 .arrowWrapper {
-  margin-left: 30px;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -125px;
 }
 
 .leftArrow {

@@ -1,6 +1,12 @@
 import React from "react";
 
-const SelectedCalendarDayPopup = ({ day, dateKey, tradeData, onDayClick }) => {
+const SelectedCalendarDayPopup = ({
+  className,
+  day,
+  dateKey,
+  tradeData,
+  onDayClick,
+}) => {
   const dateData = tradeData[dateKey];
   const totalPL = dateData
     ? dateData.trades.reduce(
@@ -16,11 +22,9 @@ const SelectedCalendarDayPopup = ({ day, dateKey, tradeData, onDayClick }) => {
 
   return (
     <div
+      className={className}
       onClick={() => onDayClick(dateKey)}
       style={{
-        margin: 5,
-        padding: 5,
-        border: "1px solid black",
         backgroundColor: backgroundColor,
       }}
     >

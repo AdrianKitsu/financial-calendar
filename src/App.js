@@ -6,22 +6,54 @@ import TradeWinPercentageIndicator from "./components/TradeWinPercentageIndicato
 import Calendar from "./components/Calendar";
 import "./globalStyles.css";
 import classes from "./App.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
+  const [tradeData, setTradeData] = useState({});
+  const [totalProfit, setTotalProfit] = useState(0);
+  const [totalTrades, setTotalTrades] = useState(0);
+  const [winningTrades, setWinningTrades] = useState(0);
+  const [losingTrades, setLosingTrades] = useState(0);
+
+  useEffect(() => {
+    // Function to calculate and update the state based on tradeData
+    const calculateAggregates = () => {
+      let profit = 0;
+      let trades = 0;
+      let wins = 0;
+      let losses = 0;
+
+      Object.values(tradeData).forEach((dayData) => {
+        dayData.trades.forEach((trade) => {
+          const tradeProfit = parseFloat(trade.profit);
+          profit += tradeProfit;
+          trades++;
+          if (tradeProfit > 0) {
+            wins++;
+          } else if (tradeProfit < 0) {
+            losses++; // Increment losses for negative profit
+          }
+        });
+      });
+
+      setTotalProfit(profit);
+      setTotalTrades(trades);
+      setWinningTrades(wins);
+      setLosingTrades(losses); // Update state for losing trades
+    };
+
+    calculateAggregates();
+  }, [tradeData]);
+
+  const updateTradeData = (newTradeData) => {
+    setTradeData(newTradeData);
+  };
+
   const [currentMonth, setCurrentMonth] = useState(new Date());
 
   const handleMonthChange = (newMonth) => {
     setCurrentMonth(newMonth);
   };
-  // Temporary hardcoded values for demonstration
-  const netPnL = 500; // Example Net P&L
-
-  const totalProfit = 1000; // Example total profit
-  const totalLoss = 500; // Example total loss
-
-  const numWinningTrades = 30; // Example number of winning trades
-  const totalTrades = 50; // Example total number of trades
 
   return (
     <>
@@ -33,18 +65,23 @@ function App() {
           />
         </section>
         <section className={classes.investmentStats}>
-          <PnLIndicator netPnL={netPnL} />
+          <PnLIndicator totalProfit={totalProfit} />
           <ProfitFactorIndicator
             totalProfit={totalProfit}
-            totalLoss={totalLoss}
+            totalTrades={totalTrades}
           />
           <TradeWinPercentageIndicator
-            numWinningTrades={numWinningTrades}
             totalTrades={totalTrades}
+            winningTrades={winningTrades}
+            losingTrades={losingTrades}
           />
         </section>
         <section className={classes.calendarSection}>
-          <Calendar currentMonth={currentMonth} />
+          <Calendar
+            currentMonth={currentMonth}
+            tradeData={tradeData}
+            onUpdateTradeData={updateTradeData}
+          />
         </section>
       </div>
     </>

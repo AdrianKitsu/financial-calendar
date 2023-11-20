@@ -1,0 +1,33 @@
+.daysContainer {
+  width: 100vw;
+  z-index: 1;
+}
+
+.daysWrapper {
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.individualDays {
+  width: 275px;
+  height: 150px;
+  border: none;
+  margin: 5px;
+  padding-top: 5px;
+  padding-right: 10px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px 1px rgba(19, 21, 22, 0.1);
+  font-weight: 600;
+  text-align: end;
+  color: #1f2021;
+}
+
+.individualDays:hover {
+  width: 278px;
+  height: 153px;
+  box-shadow: 2px 2px 8px 1px rgba(19, 21, 22, 0.2);
+}

@@ -1,12 +1,14 @@
 import React from "react";
 import classes from "./css/TradeWinPercentageIndicator.module.css";
 
-const TradeWinPercentageIndicator = ({ numWinningTrades, totalTrades }) => {
+const TradeWinPercentageIndicator = ({
+  totalTrades,
+  winningTrades,
+  losingTrades,
+}) => {
   // Calculate trade win percentage (ensure no division by zero)
-  const numLosingTrades = 5;
-
   const winPercentage =
-    totalTrades > 0 ? (numWinningTrades / totalTrades) * 100 : 0;
+    totalTrades > 0 ? (winningTrades / totalTrades) * 100 : 0;
 
   // Simple circle representation of the win percentage
   const circleStyle = {
@@ -23,7 +25,8 @@ const TradeWinPercentageIndicator = ({ numWinningTrades, totalTrades }) => {
   return (
     <div className={classes.Card}>
       <p className={classes.TradeWinPercentageTitle}>
-        Trade Win % {numWinningTrades} : {numLosingTrades}
+        Trade Win % <p className={classes.winningTrades}>{winningTrades}</p> :
+        <p className={classes.losingTrades}>{losingTrades}</p>
       </p>
       <div className={classes.TradeWinPercentagePieChart}>
         <div style={circleStyle}>{winPercentage.toFixed(0)}%</div>
