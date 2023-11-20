@@ -1,26 +1,22 @@
-import React, { useState } from "react";
-import classes from "./MonthSelector.module.css";
+import React from "react";
+import classes from "./css/MonthSelector.module.css";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
 
-const MonthSelector = ({ onMonthChange }) => {
-  const [currentMonth, setCurrentMonth] = useState(new Date());
+const MonthSelector = ({ currentMonth, onMonthChange }) => {
+  const handleNextMonth = () => {
+    const newMonth = new Date(
+      currentMonth.getFullYear(),
+      currentMonth.getMonth() + 1
+    );
+    onMonthChange(newMonth);
+  };
 
   const handlePrevMonth = () => {
     const newMonth = new Date(
       currentMonth.getFullYear(),
       currentMonth.getMonth() - 1
     );
-    setCurrentMonth(newMonth);
-    onMonthChange(newMonth);
-  };
-
-  const handleNextMonth = () => {
-    const newMonth = new Date(
-      currentMonth.getFullYear(),
-      currentMonth.getMonth() + 1
-    );
-    setCurrentMonth(newMonth);
     onMonthChange(newMonth);
   };
 

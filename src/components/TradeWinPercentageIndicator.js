@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./TradeWinPercentageIndicator.module.css";
+import classes from "./css/TradeWinPercentageIndicator.module.css";
 
 const TradeWinPercentageIndicator = ({ numWinningTrades, totalTrades }) => {
   // Calculate trade win percentage (ensure no division by zero)
